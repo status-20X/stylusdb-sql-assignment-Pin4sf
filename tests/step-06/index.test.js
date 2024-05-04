@@ -17,8 +17,13 @@ test('Parse SQL Query', () => {
         fields: ['id', 'name'],
         table: 'student',
         "joinCondition": null,
+        "isDistinct": false,
         "joinTable": null,
+        "limit": null,
         "joinType": null,
+        "groupByFields": null,
+orderByFields: null,
+       "hasAggregateWithoutGroupBy": false,
         whereClauses: []
     });
 });
@@ -39,9 +44,14 @@ test('Parse SQL Query with WHERE Clause', () => {
     expect(parsed).toEqual({
         fields: ['id', 'name'],
         table: 'student',
+        "isDistinct": false,
         "joinCondition": null,
         "joinTable": null,
         "joinType": null,
+        "limit": null,
+        "groupByFields": null,
+orderByFields: null,
+       "hasAggregateWithoutGroupBy": false,
         whereClauses: [{
           field: "age",
           operator: "=",
@@ -65,9 +75,14 @@ test('Parse SQL Query with Multiple WHERE Clauses', () => {
     expect(parsed).toEqual({
         fields: ['id', 'name'],
         table: 'student',
+        "isDistinct": false,
         "joinCondition": null,
         "joinTable": null,
         "joinType": null,
+        "limit": null,
+        "groupByFields": null,
+orderByFields: null,
+       "hasAggregateWithoutGroupBy": false,
         whereClauses: [{
             "field": "age",
             "operator": "=",

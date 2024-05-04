@@ -17,9 +17,14 @@ test('Parse SQL Query', () => {
     expect(parsed).toEqual({
         fields: ['id', 'name'],
         table: 'student',
+        "isDistinct": false,
         whereClauses: [],
         joinCondition: null,
+        "limit": null,
         joinTable: null,
+        "groupByFields": null,
+        orderByFields: null,
+        "hasAggregateWithoutGroupBy": false,
         joinType: null,
     });
 });
@@ -45,8 +50,13 @@ test('Parse SQL Query with WHERE Clause', () => {
             "operator": "=",
             "value": "25",
         }],
+        "isDistinct": false,
         joinCondition: null,
         joinTable: null,
+        "limit": null,
+        "groupByFields": null,
+        orderByFields: null,
+        "hasAggregateWithoutGroupBy": false,
         joinType: null
     });
 });
@@ -66,6 +76,8 @@ test('Parse SQL Query with Multiple WHERE Clauses', () => {
     expect(parsed).toEqual({
         fields: ['id', 'name'],
         table: 'student',
+        "limit": null,
+        "isDistinct": false,
         whereClauses: [{
             "field": "age",
             "operator": "=",
@@ -77,6 +89,9 @@ test('Parse SQL Query with Multiple WHERE Clauses', () => {
         }],
         joinCondition: null,
         joinTable: null,
+        "groupByFields": null,
+        orderByFields: null,
+        "hasAggregateWithoutGroupBy": false,
         joinType: null,
     });
 });
@@ -111,6 +126,11 @@ test('Parse SQL Query with INNER JOIN', async () => {
         whereClauses: [],
         joinTable: 'enrollment',
         joinType: "INNER",
+        "limit": null,
+        "isDistinct": false,
+        "groupByFields": null,
+        orderByFields: null,
+        "hasAggregateWithoutGroupBy": false,
         joinCondition: { left: 'student.id', right: 'enrollment.student_id' }
     })
 });
@@ -124,6 +144,11 @@ test('Parse SQL Query with INNER JOIN and WHERE Clause', async () => {
         whereClauses: [{ field: 'student.age', operator: '>', value: '20' }],
         joinTable: 'enrollment',
         "joinType": "INNER",
+        "groupByFields": null,
+        "limit": null,
+        orderByFields: null,
+        "isDistinct": false,
+        "hasAggregateWithoutGroupBy": false,
         joinCondition: { left: 'student.id', right: 'enrollment.student_id' }
     })
 });
